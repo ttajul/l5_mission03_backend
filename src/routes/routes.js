@@ -8,10 +8,16 @@ const upload = multer({dest: 'folderImages/'}); // Multer Shadow files location 
 
 // CONTROLLERS IMPORTS
 const analyseCarImage = require('../controllers/controller');
+const calculateCarValue = require('../controllers/carValueController')
+const calculateRiskRating = require('../controllers/riskRatingController')
+const calculateQuote = require('../controllers/calculateQuote')
 
 // ROUTES
 router.get('/', (req, res) => res.send('server is up'));
 router.post('/analyse-car-image', upload.single('car-image'), (req, res) => analyseCarImage(req, res));
+app.post('/calculate_car_value', calculateCarValue);
+app.post('/calculate_risk_rating', calculateRiskRating);
+app.post('/calculate_quote', calculateQuote);
 
 // EXPORT ROUTER
 module.exports = router;
